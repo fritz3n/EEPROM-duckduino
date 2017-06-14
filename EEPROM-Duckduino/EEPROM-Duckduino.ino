@@ -53,10 +53,10 @@ void setup() {
             cur = EEPROM.read(count);
             if(cur != 0){
               char a = cur;
-              if(german){
-                char a = (usToDE[a]);
+              char key = (usToDE[a]);
+              if(german == true){
+                temp += String(key);
               }
-              temp += String(a);
             }else{
               break;
             }
