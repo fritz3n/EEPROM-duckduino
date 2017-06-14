@@ -17,11 +17,11 @@ String temp;
 void setup() {
     Serial.begin(9600);
     pinMode(progPin,INPUT_PULLUP);
-    pinMode(13,OUTPUT);
+    pinMode(LED_BUILTIN,OUTPUT);
     if(digitalRead(progPin) == HIGH){
       Keyboard.begin();
       delay(100);
-      digitalWrite(13,HIGH);
+      digitalWrite(LED_BUILTIN,HIGH);
       count = 0;
       while(count <= 1023){
         cur = EEPROM.read(count);
@@ -105,7 +105,7 @@ void setup() {
           delay(defdel);
         }
       }
-      digitalWrite(13,LOW);
+      digitalWrite(LED_BUILTIN,LOW);
       Keyboard.end();
     }else{
       progmode = true;
@@ -116,7 +116,7 @@ void loop() {
   if(progmode){
     if(millis()-lastmills >= 500){
       led = !led;
-      digitalWrite(13,led);
+      digitalWrite(LED_BUILTIN,led);
       lastmills = millis();
     }
     if (Serial.available() > 0) {
