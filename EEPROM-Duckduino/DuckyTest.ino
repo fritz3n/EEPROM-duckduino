@@ -106,6 +106,7 @@ void setup() {
         }
       }
       digitalWrite(13,LOW);
+      Keyboard.end();
     }else{
       progmode = true;
     }
