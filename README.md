@@ -13,5 +13,5 @@ Now just deconnect pin 2 from ground and you´re good to go!
 
 Notes and known limtations:
 
-- Your antivirus programm might wrondfully identify the convert.exe as a virus
+- Your antivirus programm might wrongfully identify the convert.exe as a virus
 - Some keys like printscreen might not work, this is due to the limitations of the arduino keyboard library.

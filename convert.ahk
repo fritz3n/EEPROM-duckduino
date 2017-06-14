@@ -12,45 +12,47 @@ ButtonEncode:
 	B:=""
 	Loop, parse, A, `n, `r
 	{
-		StringSplit, Ar, A_LoopField, %A_Space%
-		StringLower, com, Ar1
-		if(com=="delay"){
-			Out:= Out "03 "
-			temp:= FHex(Ar2,4)
-			StringSplit, tar, temp
-			temp:= tar1 tar2 " " tar3 tar4
-			Out:= Out temp " "
+		if(A_LoopField != ""){
+			StringSplit, Ar, A_LoopField, %A_Space%
+			StringLower, com, Ar1
+			if(com=="delay"){
+				Out:= Out "03 "
+				temp:= FHex(Ar2,4)
+				StringSplit, tar, temp
+				temp:= tar1 tar2 " " tar3 tar4
+				Out:= Out temp " "
+				
+			}else if(com=="string"){
+				Out:= Out "04 "
+				temp:= SubStr(A_LoopField,8)
+				Loop, Parse, temp
+				{
+					Out:= Out FHex(asc(A_LoopField)) " "
+				}
+				Out:= Out "00 "
+				
+			}else if(com=="rem"){
 			
-		}else if(com=="string"){
-			Out:= Out "04 "
-			temp:= SubStr(A_LoopField,8)
-			Loop, Parse, temp
-			{
-				Out:= Out FHex(asc(A_LoopField)) " "
+			}else if(com=="replay"){
+				Out:= Out "06 "
+				temp:= FHex(Ar2)
+				Out:= Out temp " "
+			}else if(com=="defaultdelay" or com=="default_delay"){
+				Out:= Out "02 "
+				temp:= FHex(Ar2,4)
+				StringSplit, tar, temp
+				temp:= tar1 tar2 " " tar3 tar4
+				Out:= Out temp " "
+			}else{
+				Out:= Out "05 "
+				temp:= A_LoopField
+				temp:=rplace(temp)
+				Loop, Parse, temp
+				{
+					Out:= Out FHex(asc(A_LoopField)) " "
+				}
+				Out:= Out "00 "
 			}
-			Out:= Out "00 "
-			
-		}else if(com=="rem"){
-		
-		}else if(com=="replay"){
-			Out:= Out "06 "
-			temp:= FHex(Ar2)
-			Out:= Out temp " "
-		}else if(com=="defaultdelay" or com=="default_delay"){
-			Out:= Out "02 "
-			temp:= FHex(Ar2,4)
-			StringSplit, tar, temp
-			temp:= tar1 tar2 " " tar3 tar4
-			Out:= Out temp " "
-		}else{
-			Out:= Out "05 "
-			temp:= A_LoopField
-			temp:=rplace(temp)
-			Loop, Parse, temp
-			{
-				Out:= Out FHex(asc(A_LoopField)) " "
-			}
-			Out:= Out "00 "
 		}
 		
 	}
