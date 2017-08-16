@@ -1,8 +1,8 @@
 # EEPROM-duckduino
 
-An EEPROM based duckduino -- for everyone who doesn´t own an sd card module.
+An EEPROM based duckduino -- for everyone who doesn´t own a sd card module.
 
-For this to work, you need an arduino that can act like keyboard.
+For this to work, you need an arduino that can act like a keyboard (32u4 based boards or Due and Zero).
 
 To programm the arduino, first upload the sketch to your arduino, the usToDE.h is a conversion table from english to german keycodes, altough it screws up some special keys. 
 Enable it using the 'german' bool at the start of the code.
